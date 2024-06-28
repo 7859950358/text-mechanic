@@ -14,11 +14,13 @@ export default function TextForm(props) {
         // console.log("Btn click");
         let newText = (text.toUpperCase());
         setText(newText);
+        props.showAlert("Coverted to Upper Case", "success");
     }
     const hanldeInchange = () => {
         // console.log("Btn click");
         let newText = (text.toLowerCase());
         setText(newText);
+        props.showAlert("Coverted to Lower Case", "success");
     }
 
     const handleSpeak = () => {
@@ -31,20 +33,25 @@ export default function TextForm(props) {
         // console.log("Btn click");
         let newText = ("");
         setText(newText);
+        props.showAlert("Text Filed Empty", "success");
+
     }
 
     const handleCopy = () => {
         var newText = document.getElementById('exampleFormControlTextarea1');
         newText.select();
-        navigator.clipboard.writeText(newText.value);
+        navigator.clipboard.writeText(text);
+        props.showAlert("Your Text Copied Successfully", "success");
+
     }
     const handleRemoveSpace = () => {
         let newText = text.split(/[ ] + /);
         setText(newText.join(" "));
+        props.showAlert("Your Space removed", "success");
     }
     return (
         <div>
-            <div className='container my-5'>
+            <div className='container my-3'>
                 <h1>{props.heading}</h1>
                 <textarea className={`form-control bg-${props.mode === 'light' ? 'light' : 'dark'} text-${props.mode === 'light' ? 'dark' : 'light'}`} id="exampleFormControlTextarea1" rows="8" value={text} onChange={handleOnChange}></textarea>
                 <button className='btn btn-outline-success my-3' disabled={text.length === 0} onClick={hanldeupchange}>convert to upper case</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -57,11 +64,11 @@ export default function TextForm(props) {
             </div>
             <div className='container my-3'>
                 <h2>Your Text Summary</h2>
-                <p>{text.split(" ").filter((element)=>{return element.length !== 0}).length}&nbsp;&nbsp;Words</p>
+                <p>{text.split(/\s+/).filter((element)=>{return element.length !== 0}).length}&nbsp;&nbsp;Words</p>
                 <p>{text.length}&nbsp;&nbsp;Characters</p>
                 <p>{0.008 * text.split(" ").filter((element)=>{return element.length}).length}&nbsp;&nbsp;Reading Time</p>
                 <h3>Preview</h3>
-                <p>{text}</p>
+                <p>{text.length>0?text:"Nothing to Preview !"}</p>
             </div>
         </div>
 

@@ -27,13 +27,6 @@ function App() {
       document.body.style.color = 'white'
       newbtnText("Enble Light Mode")
       showAlert("Dark Mode Has Been Enable", "success");
-      setInterval(() => {
-        document.title = " SIt - Admission";
-      }, 2000);
-      setInterval(() => {
-        document.title = " SIt - BS.C IT";
-        
-      }, 1500);
     } else {
       setMode('light')
       document.body.style.color = 'black'
@@ -44,9 +37,9 @@ function App() {
   }
   return (
     <>
-      <Navbar title="SIT" aboutText="Contact  Us" mode={mode} toggleMode={toggleMode} btnText={btnText} />
+      <Navbar title="Text Mechanic" aboutText="Contact  Us" mode={mode} toggleMode={toggleMode} btnText={btnText} />
       <Alert alert={alert} />
-      <TextForm heading="Enter Text To Analyse Below" mode={mode} toggleMode={toggleMode} showAlert={showAlert} />
+      <TextForm heading="Repair Your Text Here" mode={mode} toggleMode={toggleMode} showAlert={showAlert} />
     </>
   );
 }
